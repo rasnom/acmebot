@@ -1,0 +1,197 @@
+{
+  "Name": "Heartland all payroll transactions",
+  "CreationDate": "2021-6-10",
+  "Commands": [
+    {
+      "Command": "store",
+      "Target": "120",
+      "Value": "!TIMEOUT_WAIT",
+      "Description": ""
+    },
+    {
+      "Command": "store",
+      "Target": "120",
+      "Value": "!TIMEOUT_DOWNLOAD",
+      "Description": ""
+    },
+    {
+      "Command": "open",
+      "Target": "https://www.heartlandplusone.com/UserLogin.aspx?ReturnUrl=%2f",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=ctl00_DefaultContent_Login1_UserName",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=ctl00_DefaultContent_Login1_UserName",
+      "Value": "Ransom.Byers",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=ctl00_DefaultContent_Login1_Password",
+      "Value": "lynx1!xnyl",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=ctl00_DefaultContent_Login1_ClientCode",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=ctl00_DefaultContent_Login1_ClientCode",
+      "Value": "0130FN93",
+      "Description": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "id=ctl00_DefaultContent_Login1_Login",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=ctl00_h2_menuHeader",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "linkText=Date Range Reports",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=//*[@id=\"ctl00_DefaultContent_LegalReportOnDemandView_Navigator_OutputsNavigator_GridView_Data\"]/tr[16]/td[2]",
+      "Value": "",
+      "Targets": [
+        "xpath=//*[@id=\"ctl00_DefaultContent_LegalReportOnDemandView_Navigator_OutputsNavigator_GridView_Data\"]/tr[16]/td[2]",
+        "xpath=//tr[16]/td[2]",
+        "css=#ctl00_DefaultContent_LegalReportOnDemandView_Navigator_OutputsNavigator_GridView_Data > tr.alt.odd.selected > td.lastCol"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_ExportTypeDropDownList",
+      "Value": "label=Excel",
+      "Targets": [
+        "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_ExportTypeDropDownList",
+        "name=ctl00$DefaultContent$LegalReportOnDemandView$Editor$UsingParametersReportEditor$FormView$ExportTypeDropDownList",
+        "xpath=//*[@id=\"ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_ExportTypeDropDownList\"]",
+        "xpath=//select[@id='ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_ExportTypeDropDownList']",
+        "xpath=//fieldset[3]/label[2]/select",
+        "css=#ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_ExportTypeDropDownList"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return new Date().getTime()",
+      "Value": "today",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return new Date('2020-03-13').getTime()",
+      "Value": "firstPayDate",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return new Date(${firstPayDate}).getTime()",
+      "Value": "payDate",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return 24 * 60 * 60 * 1000",
+      "Value": "aDay",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript_Sandbox",
+      "Target": "return ${aDay} * 14",
+      "Value": "period",
+      "Description": ""
+    },
+    {
+      "Command": "while_v2",
+      "Target": "${payDate} < ${today}",
+      "Value": "",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript",
+      "Target": "return new Date(${payDate} - ${period} + ${aDay}).toISOString().substr(0,10)",
+      "Value": "rangeStart",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_FromDateTextBox",
+      "Value": "${rangeStart}",
+      "Description": ""
+    },
+    {
+      "Command": "executeScript",
+      "Target": "return new Date(${payDate}).toISOString().substr(0,10)",
+      "Value": "rangeEnd",
+      "Description": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_ToDateTextBox",
+      "Value": "${rangeEnd}",
+      "Targets": [
+        "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_RunReportEditor_FormView_ToDateTextBox",
+        "name=ctl00$DefaultContent$LegalReportOnDemandView$Editor$RunReportEditor$FormView$ToDateTextBox",
+        "xpath=//*[@id=\"ctl00_DefaultContent_LegalReportOnDemandView_Editor_RunReportEditor_FormView_ToDateTextBox\"]",
+        "xpath=//input[@id='ctl00_DefaultContent_LegalReportOnDemandView_Editor_RunReportEditor_FormView_ToDateTextBox']",
+        "xpath=//label[2]/input",
+        "css=#ctl00_DefaultContent_LegalReportOnDemandView_Editor_RunReportEditor_FormView_ToDateTextBox"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "executeScript",
+      "Target": "period = 14 * 24 * 60 * 60 * 1000;\nreturn ${payDate}+ period",
+      "Value": "payDate",
+      "Description": "increment payDate"
+    },
+    {
+      "Command": "onDownload",
+      "Target": "PayrollDetails_${rangeEnd}.xlsx",
+      "Value": "true",
+      "Description": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_LegalReportButton",
+      "Value": "",
+      "Targets": [
+        "id=ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_LegalReportButton",
+        "name=ctl00$DefaultContent$LegalReportOnDemandView$Editor$UsingParametersReportEditor$FormView$LegalReportButton",
+        "xpath=//*[@id=\"ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_LegalReportButton\"]",
+        "xpath=//input[@id='ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_LegalReportButton']",
+        "xpath=//div/fieldset/label/input",
+        "css=#ctl00_DefaultContent_LegalReportOnDemandView_Editor_UsingParametersReportEditor_FormView_LegalReportButton"
+      ],
+      "Description": ""
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": ""
+    }
+  ]
+}
